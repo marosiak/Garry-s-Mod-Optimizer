@@ -13,3 +13,8 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
+
+DISTFILES += \
+    material/TabButton.qml \
+    JS/Front.js \
+    material/CodeArea.qml
