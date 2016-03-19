@@ -8,5 +8,6 @@
         <file>material/ButtonAlt.qml</file>
         <file>material/Switch.qml</file>
         <file>scripts/CommandsGenerator.js</file>
+        <file>icon.ico</file>
     </qresource>
 </RCC>

@@ -1,7 +1,6 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtQuick.Extras 1.4
-import QtSensors 5.5
 import QtQuick.Controls.Styles 1.4
 import "material"
 import "scripts/CommandsGenerator.js" as CommandsGenerator
@@ -146,7 +145,7 @@ ApplicationWindow {
             sColor: "#2c3e50"
             buttonText: "save"
             onClicked: {
-                Saver.Save(codeArea.code);
+                saver.save(codeArea.code);
             }
         }
     }

@@ -13,7 +13,7 @@ class Saver : public QObject
 public:
     explicit Saver(QObject *parent = 0);
 
-    Q_INVOKABLE QString Save(QString output);
+    Q_INVOKABLE QString save(QString output);
 signals:
 
 public slots:
