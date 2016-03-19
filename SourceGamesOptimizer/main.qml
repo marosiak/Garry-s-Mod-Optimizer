@@ -4,6 +4,7 @@ import QtQuick.Extras 1.4
 import QtSensors 5.5
 import QtQuick.Controls.Styles 1.4
 import "material"
+import "scripts/CommandsGenerator.js" as CommandsGenerator
 
 ApplicationWindow {
     id: window
@@ -13,6 +14,7 @@ ApplicationWindow {
     title: qsTr("Source Games Optimizer")
     flags: Qt.FramelessWindowHint | Qt.Window
     color: "#34495e"
+
     FontLoader {
         id: robotoMedium
         source: "/fonts/Roboto-Medium.ttf"
@@ -22,6 +24,17 @@ ApplicationWindow {
         width: parent.width
         height: 34
         color: "#2c3e50"
+        MouseArea {
+            anchors.fill: parent
+            property real lastMouseX: 0
+            property real lastMouseY: 0
+            onPressed: {
+                lastMouseX = mouseX
+                lastMouseY = mouseY
+            }
+            onMouseXChanged: window.x += (mouseX - lastMouseX)
+            onMouseYChanged: window.y += (mouseY - lastMouseY)
+        }
         Rectangle { // codeSwitcher
             id: codeSwitcher
             width: 70
@@ -45,6 +58,7 @@ ApplicationWindow {
                     page_Settings.visible = false;
                     codeSwitcher.color = "#34495e";
                     settingsSwitcher.color = "#2c3e50";
+
                 }
             }
             Rectangle { // settingsSwitcher
@@ -118,6 +132,7 @@ ApplicationWindow {
             anchors.top: parent.top
             anchors.topMargin: 25
             codeColor: "#2c3e50"
+            //code: //here will go code
         }
         Button {
             id: saveButton
@@ -176,12 +191,12 @@ ApplicationWindow {
                         if(state == "bad"){
                             state = "good";
                             connection_text.text = "Good Connection";
+
                         }
                         else{
                             state = "bad"
                             connection_text.text = "Bad Connection";
                         }
-                        States.connection = checked;
                     }
                 }
                 Text {
@@ -215,7 +230,6 @@ ApplicationWindow {
                             state = "disabled"
                             sprays_text.text = "Sprays Disabled";
                         }
-                        States.sprays = checked;
                     }
                 }
                 Text {
@@ -249,7 +263,6 @@ ApplicationWindow {
                             state = "disabled"
                             shadows_text.text = "Shadows Disabled";
                         }
-                        States.shadows = checked;
                     }
                 }
                 Text {
@@ -283,7 +296,6 @@ ApplicationWindow {
                             state = "disabled"
                             facial_text.text = "Facial features Disabled";
                         }
-                        States.facial = checked;
                     }
                 }
                 Text {
@@ -317,7 +329,6 @@ ApplicationWindow {
                             state = "disabled"
                             ragdolls_text.text = "Ragdolls Disabled";
                         }
-                        States.ragdolls = checked;
                     }
                 }
                 Text {
@@ -351,7 +362,6 @@ ApplicationWindow {
                             state = "disabled"
                             gibs_text.text = "Gibs Disabled";
                         }
-                        States.gibs = checked;
                     }
                 }
                 Text {
@@ -396,7 +406,6 @@ ApplicationWindow {
                             state = "disabled"
                             sky3d_text.text = "3D Sky Disabled";
                         }
-                        States.sky3d = checked;
                     }
                 }
                 Text {
@@ -431,7 +440,6 @@ ApplicationWindow {
                             state = "disabled"
                             rope_text.text = "Rope Disabled";
                         }
-                        States.rope = checked;
                     }
                 }
                 Text {

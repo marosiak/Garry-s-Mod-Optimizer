@@ -7,5 +7,6 @@
         <file>material/CodeArea.qml</file>
         <file>material/ButtonAlt.qml</file>
         <file>material/Switch.qml</file>
+        <file>scripts/CommandsGenerator.js</file>
     </qresource>
 </RCC>

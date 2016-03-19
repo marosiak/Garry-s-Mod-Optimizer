@@ -4,9 +4,7 @@ QT += qml quick widgets
 
 CONFIG += c++11
 
-SOURCES += main.cpp \
-    class/states.cpp \
-    class/commandsgenerator.cpp
+SOURCES += main.cpp
 
 RESOURCES += qml.qrc
 
@@ -21,8 +19,7 @@ DISTFILES += \
     JS/Front.js \
     material/CodeArea.qml \
     material/ButtonAlt.qml \
-    material/Switch.qml
+    material/Switch.qml \
+    scripts/CommandsGenerator.js
 
-HEADERS += \
-    class/states.h \
-    class/commandsgenerator.h
+HEADERS +=
