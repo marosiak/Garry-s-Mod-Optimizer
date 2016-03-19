@@ -70,6 +70,7 @@ Rectangle {
             font.pixelSize: 12
             text: code
         }
+
     }
 
 }

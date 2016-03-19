@@ -4,7 +4,8 @@ QT += qml quick widgets
 
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    class/saver.cpp
 
 RESOURCES += qml.qrc
 
@@ -22,4 +23,5 @@ DISTFILES += \
     material/Switch.qml \
     scripts/CommandsGenerator.js
 
-HEADERS +=
+HEADERS += \
+    class/saver.h

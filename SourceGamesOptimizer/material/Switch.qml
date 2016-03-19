@@ -11,17 +11,13 @@ Switch {
                 implicitWidth: 40
                 implicitHeight: 20
                 radius: 60
-                //border.color: "white"
-                //border.width: 0.5
-                color: fColor
+                color: control.checked ? "#27AE60" : "#e74c3c"
         }
         handle: Rectangle {
             implicitWidth: 20
             implicitHeight: 10
             radius: 60
-            //border.width: 0.5
-            color: sColor
-            //border.color: "white"
+            color: "#e0e0e0"
         }
     }
  }

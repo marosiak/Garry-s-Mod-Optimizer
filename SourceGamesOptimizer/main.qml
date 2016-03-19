@@ -5,16 +5,17 @@ import QtSensors 5.5
 import QtQuick.Controls.Styles 1.4
 import "material"
 import "scripts/CommandsGenerator.js" as CommandsGenerator
+import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: window
     visible: true
     width: 640
     height: 300
-    title: qsTr("Source Games Optimizer")
+    title: qsTr("Garry's Mod Optimizer")
     flags: Qt.FramelessWindowHint | Qt.Window
     color: "#34495e"
-
+    Component.onCompleted: codeArea.code = "cl_cmdrate 66\ncl_interp 0\ncl_interp_ratio 1\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate 66\n";
     FontLoader {
         id: robotoMedium
         source: "/fonts/Roboto-Medium.ttf"
@@ -132,7 +133,6 @@ ApplicationWindow {
             anchors.top: parent.top
             anchors.topMargin: 25
             codeColor: "#2c3e50"
-            //code: //here will go code
         }
         Button {
             id: saveButton
@@ -145,18 +145,9 @@ ApplicationWindow {
             fColor: "#34495e"
             sColor: "#2c3e50"
             buttonText: "save"
-        }
-        Button {
-            id: clearButton
-            width: 90
-            height: 35
-            anchors.right: parent.right
-            anchors.rightMargin: 35+saveButton.width+3
-            anchors.top: codeArea.bottom
-            anchors.topMargin: 3
-            fColor: "#34495e"
-            sColor: "#2c3e50"
-            buttonText: "clear"
+            onClicked: {
+                Saver.Save(codeArea.code);
+            }
         }
     }
     Item {
@@ -190,23 +181,23 @@ ApplicationWindow {
                     onClicked: {
                         if(state == "bad"){
                             state = "good";
-                            connection_text.text = "Good Connection";
-
+                            connection_text.text = "Good connection";
                         }
                         else{
                             state = "bad"
-                            connection_text.text = "Bad Connection";
+                            connection_text.text = "Bad connection";
                         }
                     }
                 }
                 Text {
                     id: connection_text
                     color: "#ffffff"
-                    text: qsTr("Good Connection")
+                    text: qsTr("Good connection")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
             Row {
@@ -221,25 +212,16 @@ ApplicationWindow {
                     sColor: "#6C7A89"
                     state: "enabled"
                     checked: true
-                    onClicked: {
-                        if(state == "disabled"){
-                            state = "enabled";
-                            sprays_text.text = "Sprays Enabled";
-                        }
-                        else{
-                            state = "disabled"
-                            sprays_text.text = "Sprays Disabled";
-                        }
-                    }
                 }
                 Text {
                     id: sprays_text
                     color: "#ffffff"
-                    text: qsTr("Sprays Enabled")
+                    text: qsTr("Sprays")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
             Row {
@@ -254,25 +236,16 @@ ApplicationWindow {
                     sColor: "#6C7A89"
                     state: "enabled"
                     checked: true;
-                    onClicked: {
-                        if(state == "disabled"){
-                            state = "enabled";
-                            shadows_text.text = "Shadows Enabled";
-                        }
-                        else{
-                            state = "disabled"
-                            shadows_text.text = "Shadows Disabled";
-                        }
-                    }
                 }
                 Text {
                     id: shadows_text
                     color: "#ffffff"
-                    text: qsTr("Shadows Enabled")
+                    text: qsTr("Shadows")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
             Row {
@@ -287,25 +260,16 @@ ApplicationWindow {
                     sColor: "#6C7A89"
                     state: "enabled"
                     checked: true;
-                    onClicked: {
-                        if(state == "disabled"){
-                            state = "enabled";
-                            facial_text.text = "Facial features Enabled";
-                        }
-                        else{
-                            state = "disabled"
-                            facial_text.text = "Facial features Disabled";
-                        }
-                    }
                 }
                 Text {
                     id: facial_text
                     color: "#ffffff"
-                    text: qsTr("Facial features Enabled")
+                    text: qsTr("Facial features")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
             Row {
@@ -320,25 +284,16 @@ ApplicationWindow {
                     sColor: "#6C7A89"
                     state: "enabled"
                     checked: true;
-                    onClicked: {
-                        if(state == "disabled"){
-                            state = "enabled";
-                            ragdolls_text.text = "Ragdolls Enabled";
-                        }
-                        else{
-                            state = "disabled"
-                            ragdolls_text.text = "Ragdolls Disabled";
-                        }
-                    }
                 }
                 Text {
                     id: ragdolls_text
                     color: "#ffffff"
-                    text: qsTr("Ragdolls Enabled")
+                    text: qsTr("Ragdolls")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
             Row {
@@ -353,25 +308,16 @@ ApplicationWindow {
                     sColor: "#6C7A89"
                     state: "enabled"
                     checked: true;
-                    onClicked: {
-                        if(state == "disabled"){
-                            state = "enabled";
-                            gibs_text.text = "Gibs Enabled";
-                        }
-                        else{
-                            state = "disabled"
-                            gibs_text.text = "Gibs Disabled";
-                        }
-                    }
                 }
                 Text {
                     id: gibs_text
                     color: "#ffffff"
-                    text: qsTr("Gibs Enabled")
+                    text: qsTr("Gibs")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
         }
@@ -397,25 +343,16 @@ ApplicationWindow {
                     sColor: "#6C7A89"
                     state: "enabled"
                     checked: true;
-                    onClicked: {
-                        if(state == "disabled"){
-                            state = "enabled";
-                            sky3d_text.text = "3D Sky Enabled";
-                        }
-                        else{
-                            state = "disabled"
-                            sky3d_text.text = "3D Sky Disabled";
-                        }
-                    }
                 }
                 Text {
                     id: sky3d_text
                     color: "#ffffff"
-                    text: qsTr("3D Sky Enabled")
+                    text: qsTr("3D Sky")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
             Row {
@@ -431,25 +368,16 @@ ApplicationWindow {
                     sColor: "#6C7A89"
                     state: "enabled"
                     checked: true;
-                    onClicked: {
-                        if(state == "disabled"){
-                            state = "enabled";
-                            rope_text.text = "Rope Enabled";
-                        }
-                        else{
-                            state = "disabled"
-                            rope_text.text = "Rope Disabled";
-                        }
-                    }
                 }
                 Text {
                     id: rope_text
                     color: "#ffffff"
-                    text: qsTr("Rope Enabled")
+                    text: qsTr("Rope")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     font.pixelSize: 12
+                    font.family: robotoMedium.name
                 }
             }
         }
